@@ -1,11 +1,11 @@
 package io.github.aquerr.pandobot;
 
-import events.MessageListener;
+import io.github.aquerr.pandobot.events.MessageListener;
+import io.github.aquerr.pandobot.secret.SecretProperties;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Game;
-import secret.SecretProperties;
 
 public class PandoBot
 {
