@@ -10,6 +10,9 @@ import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PandoBot
 {
     public static Commands commands = new Commands();
@@ -39,15 +42,39 @@ public class PandoBot
 
     public static void processCommand(User author, Message message)
     {
+//        String text = message.getContentDisplay().substring(1);
+//        String command = text.split(" ")[0];
+//
+//        if (!commands.containsCommand(command))
+//            return;
+//
+//        String argsText = text.substring(command.length());
+//        String[] args = argsText.split("\" \"");
+//
+//        commands.executeCommand(command, author, args);
+
+
         String text = message.getContentDisplay().substring(1);
         String command = text.split(" ")[0];
 
         if (!commands.containsCommand(command))
             return;
 
-        String argsText = text.substring(command.length());
-        String[] args = argsText.split("\" \"");
 
-        commands.executeCommand(command, author, args);
+        boolean startOfArg = false;
+        List<String> argsList = new ArrayList<>();
+        List<Character> characterList = new ArrayList<>();
+        for (char character : text.substring(command.length()).toCharArray())
+        {
+            if(startOfArg)
+            {
+                //TODO: Add character
+            }
+
+            if (character == '\"' && !startOfArg)
+            {
+                startOfArg = true;
+            }
+        }
     }
 }
