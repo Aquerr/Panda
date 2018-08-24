@@ -1,8 +1,11 @@
 package io.github.aquerr.pandobot.commands;
 
+import net.dv8tion.jda.core.entities.Channel;
+import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Commands
@@ -33,8 +36,8 @@ public class Commands
         return this.commands.containsKey(alias);
     }
 
-    public boolean executeCommand(String commandAlias, User user, String[] args)
+    public boolean executeCommand(String commandAlias, User user, MessageChannel channel, List<String> args)
     {
-        return this.commands.get(commandAlias).execute(user, args);
+        return this.commands.get(commandAlias).execute(user,channel, args);
     }
 }

@@ -6,9 +6,7 @@ import io.github.aquerr.pandobot.secret.SecretProperties;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.Game;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +38,7 @@ public class PandoBot
         }
     }
 
-    public static void processCommand(User author, Message message)
+    public static void processCommand(User author, MessageChannel channel, Message message)
     {
 //        String text = message.getContentDisplay().substring(1);
 //        String command = text.split(" ")[0];
@@ -55,26 +53,32 @@ public class PandoBot
 
 
         String text = message.getContentDisplay().substring(1);
-        String command = text.split(" ")[0];
+        String commandAlias = text.split(" ")[0];
 
-        if (!commands.containsCommand(command))
+        if (!commands.containsCommand(commandAlias))
             return;
 
-
-        boolean startOfArg = false;
+        boolean isArgument = false;
         List<String> argsList = new ArrayList<>();
-        List<Character> characterList = new ArrayList<>();
-        for (char character : text.substring(command.length()).toCharArray())
+        StringBuilder stringBuilder = new StringBuilder();
+        for (char character : text.substring(commandAlias.length()).toCharArray())
         {
-            if(startOfArg)
+            if (character == '\"' && !isArgument)
             {
-                //TODO: Add character
+                isArgument = true;
             }
-
-            if (character == '\"' && !startOfArg)
+            else if(character == '\"' && isArgument)
             {
-                startOfArg = true;
+                isArgument = false;
+                argsList.add(stringBuilder.toString());
+                stringBuilder.setLength(0);
+            }
+            else if(isArgument)
+            {
+                stringBuilder.append(character);
             }
         }
+
+        commands.executeCommand(commandAlias, author, channel, argsList);
     }
 }

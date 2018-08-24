@@ -13,7 +13,7 @@ public class MessageListener extends ListenerAdapter
     {
         if (event.getMessage().getContentDisplay().startsWith("!"))
         {
-            PandoBot.processCommand(event.getAuthor(), event.getMessage());
+            PandoBot.processCommand(event.getAuthor(), event.getChannel(), event.getMessage());
         }
 
 
@@ -31,10 +31,10 @@ public class MessageListener extends ListenerAdapter
     public void onMessageReactionAdd(MessageReactionAddEvent event)
     {
         //String below = 👍
-        if("\uD83D\uDC4D".equals(event.getReaction().getReactionEmote().getName()))
-        {
-            event.getGuild().getController().addRolesToMember(event.getMember(), event.getJDA().getRoleById(481503508814626826L)).queue();
-            event.getChannel().sendMessage("Co mi kciuki dajesz kurcze?!").queue();
-        }
+//        if("\uD83D\uDC4D".equals(event.getReaction().getReactionEmote().getName()))
+//        {
+//            event.getGuild().getController().addRolesToMember(event.getMember(), event.getJDA().getRoleById(481503508814626826L)).queue();
+//            event.getChannel().sendMessage("Co mi kciuki dajesz kurcze?!").queue();
+//        }
     }
 }
