@@ -24,8 +24,10 @@ public class MessageListener extends ListenerAdapter
 
         if(event.getMessage().getEmbeds().size() > 0 && event.getAuthor().getIdLong() == 481489722003161119L)
         {
+            MessageEmbed messageEmbed = event.getMessage().getEmbeds().get(0);
+
             //Survey
-            if(event.getMessage().getEmbeds().get(0).getTitle().startsWith(":bookmark_tabs:"))
+            if(messageEmbed.getTitle() != null && messageEmbed.getTitle().startsWith(":bookmark_tabs:"))
             {
                 event.getMessage().addReaction("❤").queue();
                 event.getMessage().addReaction("\uD83D\uDC4D").queue();
