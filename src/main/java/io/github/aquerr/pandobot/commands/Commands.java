@@ -1,6 +1,5 @@
 package io.github.aquerr.pandobot.commands;
 
-import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 
@@ -21,6 +20,7 @@ public class Commands
     {
         //TODO: Add new commands here...
         addCommand("ankieta", new SurveyCommand());
+        addCommand("wyczysc", new ClearCommand());
     }
 
     public void addCommand(String alias, ICommand command)

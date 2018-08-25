@@ -21,7 +21,7 @@ public class PandoBot
         {
             JDA jda = new JDABuilder(AccountType.BOT)
                     .setToken(SecretProperties.BOT_TOKEN)
-                    .setGame(Game.of(Game.GameType.DEFAULT, "Pandaria", "https://github.com/Aquerr/PandoBot"))
+                    .setGame(Game.of(Game.GameType.DEFAULT, "o Bambus", "https://github.com/Aquerr/PandoBot"))
                     .buildBlocking();
 
             System.out.println("Setting up commands...");
