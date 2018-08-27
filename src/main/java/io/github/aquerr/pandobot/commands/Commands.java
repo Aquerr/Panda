@@ -3,13 +3,11 @@ package io.github.aquerr.pandobot.commands;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Commands
 {
-    private Map<String, ICommand> commands = new HashMap();
+    private Map<List<String>, ICommand> commands = new HashMap();
 
     public Commands()
     {
@@ -19,16 +17,16 @@ public class Commands
     private void initCommands()
     {
         //TODO: Add new commands here...
-        addCommand("ankieta", new SurveyCommand());
-        addCommand("wyczysc", new ClearCommand());
+        addCommand(Collections.singletonList("ankieta"), new SurveyCommand());
+        addCommand(Arrays.asList("wyczysc", "clear"), new ClearCommand());
     }
 
-    public void addCommand(String alias, ICommand command)
+    public void addCommand(List<String> aliases, ICommand command)
     {
-        if (this.commands.containsKey(alias))
-            throw new IllegalArgumentException("Commands already contain a command with following alias: " + alias);
+        if (this.commands.containsKey(aliases))
+            throw new IllegalArgumentException("Commands already contain a command with following alias: " + aliases);
 
-        this.commands.put(alias, command);
+        this.commands.put(aliases, command);
     }
 
     public boolean containsCommand(String alias)
