@@ -19,6 +19,7 @@ public class Commands
         //TODO: Add new commands here...
         addCommand(Collections.singletonList("ankieta"), new SurveyCommand());
         addCommand(Arrays.asList("wyczysc", "clear"), new ClearCommand());
+        addCommand(Collections.singletonList("game"), new GameCommand());
     }
 
     public void addCommand(List<String> aliases, ICommand command)
@@ -31,11 +32,11 @@ public class Commands
 
     public boolean containsCommand(String alias)
     {
-        return this.commands.containsKey(alias);
+        return this.commands.containsKey(Collections.singletonList(alias));
     }
 
     public boolean executeCommand(String commandAlias, User user, MessageChannel channel, List<String> args)
     {
-        return this.commands.get(commandAlias).execute(user,channel, args);
+        return this.commands.get(Collections.singletonList(commandAlias)).execute(user,channel, args);
     }
 }
