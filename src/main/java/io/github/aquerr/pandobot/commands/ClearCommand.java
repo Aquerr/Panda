@@ -3,9 +3,7 @@ package io.github.aquerr.pandobot.commands;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.entities.impl.ReceivedMessage;
 
 import java.util.List;
 
@@ -32,4 +30,6 @@ public class ClearCommand implements ICommand
         channel.sendMessage(embedBuilder.build()).queue();
         return true;
     }
+
+
 }
