@@ -32,11 +32,16 @@ public class Commands
 
     public boolean containsCommand(String alias)
     {
-        return this.commands.containsKey(Collections.singletonList(alias));
+        for (List<String> commandAliases : this.commands.keySet())
+        {
+            if (commandAliases.contains(alias))
+                return true;
+        }
+        return false;
     }
 
     public boolean executeCommand(String commandAlias, User user, MessageChannel channel, List<String> args)
     {
-        return this.commands.get(Collections.singletonList(commandAlias)).execute(user,channel, args);
+        return this.commands.get(commandAlias).execute(user,channel, args);
     }
 }
