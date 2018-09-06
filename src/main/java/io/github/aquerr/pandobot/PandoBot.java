@@ -1,9 +1,9 @@
 package io.github.aquerr.pandobot;
 
 import io.github.aquerr.pandobot.commands.Commands;
+import io.github.aquerr.pandobot.commands.ICommand;
 import io.github.aquerr.pandobot.events.MessageListener;
 import io.github.aquerr.pandobot.secret.SecretProperties;
-import javafx.concurrent.ScheduledService;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -77,24 +77,16 @@ public class PandoBot
         };
     }
 
-    public void processCommand(User author, MessageChannel channel, Message message)
+    public void processCommand(Member author, MessageChannel channel, Message message)
     {
-//        String text = message.getContentDisplay().substring(1);
-//        String command = text.split(" ")[0];
-//
-//        if (!commands.containsCommand(command))
-//            return;
-//
-//        String argsText = text.substring(command.length());
-//        String[] args = argsText.split("\" \"");
-//
-//        commands.executeCommand(command, author, args);
-
-
         String text = message.getContentDisplay().substring(1);
         String commandAlias = text.split(" ")[0];
 
-        if (!this.commands.containsCommand(commandAlias))
+        Optional<ICommand> optionalCommand = this.commands.getCommand(commandAlias);
+        if (!optionalCommand.isPresent())
+            return;
+
+        if(!this.commands.hasPermissions(author, optionalCommand.get()))
             return;
 
         boolean isArgument = false;
@@ -118,7 +110,7 @@ public class PandoBot
             }
         }
 
-        commands.executeCommand(commandAlias, author, channel, argsList);
+        commands.executeCommand(commandAlias, author.getUser(), channel, argsList);
     }
 
     private Game getBotGame()

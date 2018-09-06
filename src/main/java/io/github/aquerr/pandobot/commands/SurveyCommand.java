@@ -1,5 +1,6 @@
 package io.github.aquerr.pandobot.commands;
 
+import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
@@ -7,6 +8,7 @@ import net.dv8tion.jda.core.entities.User;
 import java.awt.*;
 import java.util.List;
 
+@BotCommand(minRole = VTEAMRoles.MODERATOR, argsCount = 4)
 public class SurveyCommand implements ICommand
 {
     @Override

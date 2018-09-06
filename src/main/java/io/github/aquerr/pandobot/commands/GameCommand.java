@@ -1,11 +1,13 @@
 package io.github.aquerr.pandobot.commands;
 
+import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 
 import java.util.List;
 
+@BotCommand(minRole = VTEAMRoles.MODERATOR, argsCount = 1)
 public class GameCommand implements ICommand
 {
     @Override
