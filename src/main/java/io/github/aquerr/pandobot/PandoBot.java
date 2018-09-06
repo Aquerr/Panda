@@ -14,12 +14,31 @@ import java.util.*;
 
 public class PandoBot
 {
-    public static Commands commands = new Commands();
+    public Commands commands = new Commands();
 
-    private static JDA pandoBot;
-    private static Timer onHourTimer;
+    private static PandoBot pandoBot;
+
+    private JDA jda;
+    private Timer onHourTimer;
+
+    private PandoBot()
+    {
+        setup();
+    }
+
+    public static PandoBot getInstance()
+    {
+        if(pandoBot != null)
+            return pandoBot;
+        return new PandoBot();
+    }
 
     public static void main(String[] args)
+    {
+        pandoBot = new PandoBot();
+    }
+
+    private void setup()
     {
         try
         {
@@ -27,20 +46,17 @@ public class PandoBot
             onHourTimer = new Timer();
             onHourTimer.schedule(scheduleOneHour(), 3_600_000L);
 
-            JDA jda = new JDABuilder(AccountType.BOT)
+            this.jda = new JDABuilder(AccountType.BOT)
                     .setToken(SecretProperties.BOT_TOKEN)
                     .setGame(Game.of(Game.GameType.DEFAULT, "o Bambus", "https://github.com/Aquerr/PandoBot"))
                     .buildBlocking();
-
-            pandoBot = jda;
 
             System.out.println("Setting up commands...");
 
 
             System.out.println("Connectd!");
-            jda.addEventListener(new MessageListener());
-            jda.setAutoReconnect(true);
-
+            this.jda.addEventListener(new MessageListener());
+            this.jda.setAutoReconnect(true);
         }
         catch (Exception exception)
         {
@@ -48,20 +64,20 @@ public class PandoBot
         }
     }
 
-    private static TimerTask scheduleOneHour()
+    private TimerTask scheduleOneHour()
     {
         return new TimerTask()
         {
             @Override
             public void run()
             {
-                pandoBot.getPresence().setGame(getBotGame());
+                jda.getPresence().setGame(getBotGame());
                 onHourTimer.schedule(scheduleOneHour(), 3_600_000L);
             }
         };
     }
 
-    public static void processCommand(User author, MessageChannel channel, Message message)
+    public void processCommand(User author, MessageChannel channel, Message message)
     {
 //        String text = message.getContentDisplay().substring(1);
 //        String command = text.split(" ")[0];
@@ -78,7 +94,7 @@ public class PandoBot
         String text = message.getContentDisplay().substring(1);
         String commandAlias = text.split(" ")[0];
 
-        if (!commands.containsCommand(commandAlias))
+        if (!this.commands.containsCommand(commandAlias))
             return;
 
         boolean isArgument = false;
@@ -105,12 +121,7 @@ public class PandoBot
         commands.executeCommand(commandAlias, author, channel, argsList);
     }
 
-    private static void setup()
-    {
-
-    }
-
-    private static Game getBotGame()
+    private Game getBotGame()
     {
         LocalTime time = LocalTime.now();
         if (time.getHour() > 22 || time.getHour() < 8)

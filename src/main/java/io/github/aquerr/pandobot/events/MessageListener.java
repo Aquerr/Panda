@@ -19,7 +19,7 @@ public class MessageListener extends ListenerAdapter
     {
         if (event.getMessage().getContentDisplay().startsWith("!"))
         {
-            PandoBot.processCommand(event.getAuthor(), event.getChannel(), event.getMessage());
+            PandoBot.getInstance().processCommand(event.getAuthor(), event.getChannel(), event.getMessage());
         }
 
         if(event.getMessage().getEmbeds().size() > 0 && event.getAuthor().getIdLong() == 481489722003161119L)

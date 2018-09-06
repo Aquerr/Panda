@@ -42,6 +42,11 @@ public class Commands
 
     public boolean executeCommand(String commandAlias, User user, MessageChannel channel, List<String> args)
     {
-        return this.commands.get(commandAlias).execute(user,channel, args);
+        for (List<String> commandAliases : this.commands.keySet())
+        {
+            if (commandAliases.contains(commandAlias))
+                return this.commands.get(commandAliases).execute(user,channel, args);
+        }
+        return false;
     }
 }
