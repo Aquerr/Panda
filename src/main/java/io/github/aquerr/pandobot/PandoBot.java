@@ -3,26 +3,36 @@ package io.github.aquerr.pandobot;
 import io.github.aquerr.pandobot.commands.Commands;
 import io.github.aquerr.pandobot.events.MessageListener;
 import io.github.aquerr.pandobot.secret.SecretProperties;
+import javafx.concurrent.ScheduledService;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalTime;
+import java.util.*;
 
 public class PandoBot
 {
     public static Commands commands = new Commands();
 
+    private static JDA pandoBot;
+    private static Timer onHourTimer;
+
     public static void main(String[] args)
     {
         try
         {
+            //START TIMER HERE.
+            onHourTimer = new Timer();
+            onHourTimer.schedule(scheduleOneHour(), 3_600_000L);
+
             JDA jda = new JDABuilder(AccountType.BOT)
                     .setToken(SecretProperties.BOT_TOKEN)
                     .setGame(Game.of(Game.GameType.DEFAULT, "o Bambus", "https://github.com/Aquerr/PandoBot"))
                     .buildBlocking();
+
+            pandoBot = jda;
 
             System.out.println("Setting up commands...");
 
@@ -36,6 +46,19 @@ public class PandoBot
         {
             exception.printStackTrace();
         }
+    }
+
+    private static TimerTask scheduleOneHour()
+    {
+        return new TimerTask()
+        {
+            @Override
+            public void run()
+            {
+                pandoBot.getPresence().setGame(getBotGame());
+                onHourTimer.schedule(scheduleOneHour(), 3_600_000L);
+            }
+        };
     }
 
     public static void processCommand(User author, MessageChannel channel, Message message)
@@ -80,5 +103,20 @@ public class PandoBot
         }
 
         commands.executeCommand(commandAlias, author, channel, argsList);
+    }
+
+    private static void setup()
+    {
+
+    }
+
+    private static Game getBotGame()
+    {
+        LocalTime time = LocalTime.now();
+        if (time.getHour() > 22 || time.getHour() < 8)
+        {
+            return Game.of(Game.GameType.DEFAULT, "VTEAM");
+        }
+        return Game.of(Game.GameType.DEFAULT, "o Bambus");
     }
 }
