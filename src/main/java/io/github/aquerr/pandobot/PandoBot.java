@@ -1,6 +1,6 @@
 package io.github.aquerr.pandobot;
 
-import io.github.aquerr.pandobot.commands.Commands;
+import io.github.aquerr.pandobot.commands.CommandManager;
 import io.github.aquerr.pandobot.commands.ICommand;
 import io.github.aquerr.pandobot.events.MessageListener;
 import io.github.aquerr.pandobot.secret.SecretProperties;
@@ -14,10 +14,9 @@ import java.util.*;
 
 public class PandoBot
 {
-    public Commands commands = new Commands();
-
     private static PandoBot pandoBot;
 
+    private CommandManager commandManager;
     private JDA jda;
     private Timer onHourTimer;
 
@@ -33,9 +32,60 @@ public class PandoBot
         return new PandoBot();
     }
 
+    public CommandManager getCommandManager()
+    {
+        return this.commandManager;
+    }
+
     public static void main(String[] args)
     {
         pandoBot = new PandoBot();
+    }
+
+    public void processCommand(Member author, MessageChannel channel, Message message)
+    {
+        //Create a new class "parser" for commandManager that will take care of arguments.
+        //Arguments can be different for each command. E.g. not every command needs to take arguments inside " "
+
+        String text = message.getContentDisplay().substring(1);
+        String commandAlias = text.split(" ")[0];
+
+        Optional<ICommand> optionalCommand = this.commandManager.getCommand(commandAlias);
+        if (!optionalCommand.isPresent())
+            return;
+
+        if(!this.commandManager.hasPermissions(author, optionalCommand.get()))
+            return;
+
+        List<String> argsList = parseCommandArguments(text, commandAlias);
+
+        commandManager.executeCommand(commandAlias, author.getUser(), channel, argsList);
+    }
+
+    private List<String> parseCommandArguments(String text, String commandAlias)
+    {
+        boolean isArgument = false;
+        List<String> argsList = new ArrayList<>();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (char character : text.substring(commandAlias.length()).toCharArray())
+        {
+            if (character == '\"' && !isArgument)
+            {
+                isArgument = true;
+            }
+            else if(character == '\"' && isArgument)
+            {
+                isArgument = false;
+                argsList.add(stringBuilder.toString());
+                stringBuilder.setLength(0);
+            }
+            else if(isArgument)
+            {
+                stringBuilder.append(character);
+            }
+        }
+
+        return argsList;
     }
 
     private void setup()
@@ -51,8 +101,8 @@ public class PandoBot
                     .setGame(Game.of(Game.GameType.DEFAULT, "o Bambus", "https://github.com/Aquerr/PandoBot"))
                     .buildBlocking();
 
-            System.out.println("Setting up commands...");
-
+            System.out.println("Setting up commandManager...");
+            this.commandManager = new CommandManager();
 
             System.out.println("Connectd!");
             this.jda.addEventListener(new MessageListener());
@@ -75,42 +125,6 @@ public class PandoBot
                 onHourTimer.schedule(scheduleOneHour(), 3_600_000L);
             }
         };
-    }
-
-    public void processCommand(Member author, MessageChannel channel, Message message)
-    {
-        String text = message.getContentDisplay().substring(1);
-        String commandAlias = text.split(" ")[0];
-
-        Optional<ICommand> optionalCommand = this.commands.getCommand(commandAlias);
-        if (!optionalCommand.isPresent())
-            return;
-
-        if(!this.commands.hasPermissions(author, optionalCommand.get()))
-            return;
-
-        boolean isArgument = false;
-        List<String> argsList = new ArrayList<>();
-        StringBuilder stringBuilder = new StringBuilder();
-        for (char character : text.substring(commandAlias.length()).toCharArray())
-        {
-            if (character == '\"' && !isArgument)
-            {
-                isArgument = true;
-            }
-            else if(character == '\"' && isArgument)
-            {
-                isArgument = false;
-                argsList.add(stringBuilder.toString());
-                stringBuilder.setLength(0);
-            }
-            else if(isArgument)
-            {
-                stringBuilder.append(character);
-            }
-        }
-
-        commands.executeCommand(commandAlias, author.getUser(), channel, argsList);
     }
 
     private Game getBotGame()

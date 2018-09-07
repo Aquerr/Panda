@@ -1,5 +1,6 @@
 package io.github.aquerr.pandobot.commands;
 
+import io.github.aquerr.pandobot.annotations.BotCommand;
 import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.MessageChannel;
@@ -8,18 +9,18 @@ import net.dv8tion.jda.core.entities.User;
 
 import java.util.*;
 
-public class Commands
+public class CommandManager
 {
     private Map<List<String>, ICommand> commands = new HashMap();
 
-    public Commands()
+    public CommandManager()
     {
         initCommands();
     }
 
     private void initCommands()
     {
-        //TODO: Add new commands here...
+        //TODO: Add new commandManager here...
         addCommand(Collections.singletonList("ankieta"), new SurveyCommand());
         addCommand(Arrays.asList("wyczysc", "clear"), new ClearCommand());
         addCommand(Collections.singletonList("game"), new GameCommand());
@@ -28,7 +29,7 @@ public class Commands
     public void addCommand(List<String> aliases, ICommand command)
     {
         if (this.commands.containsKey(aliases))
-            throw new IllegalArgumentException("Commands already contain a command with following alias: " + aliases);
+            throw new IllegalArgumentException("CommandManager already contain a command with following alias: " + aliases);
 
         this.commands.put(aliases, command);
     }

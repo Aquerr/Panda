@@ -1,5 +1,6 @@
 package io.github.aquerr.pandobot.commands;
 
+import io.github.aquerr.pandobot.annotations.BotCommand;
 import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.MessageChannel;
