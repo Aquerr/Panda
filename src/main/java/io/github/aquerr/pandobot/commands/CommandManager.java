@@ -24,6 +24,7 @@ public class CommandManager
         addCommand(Collections.singletonList("ankieta"), new SurveyCommand());
         addCommand(Arrays.asList("wyczysc", "clear"), new ClearCommand());
         addCommand(Collections.singletonList("game"), new GameCommand());
+        addCommand(Collections.singletonList("gif"), new GifCommand());
     }
 
     public void addCommand(List<String> aliases, ICommand command)
