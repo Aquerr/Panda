@@ -27,7 +27,7 @@ public class HelpCommand implements ICommand
         {
             String commandAliases = String.join(", ", commandEntry.getKey());
 
-            embedBuilder.addField(commandEntry.getValue());
+            embedBuilder.addField(commandAliases, "", false);
         }
 
 
@@ -35,7 +35,6 @@ public class HelpCommand implements ICommand
 //        embedBuilder.setDescription("- - - - - - - - - - - - - - - -" + "\n" + ":heart: - " + args.get(1) + "\n\n" +
 //                ":thumbsup: - " + args.get(2) + "\n\n" +
 //                ":thumbsdown: - " + args.get(3));
-        embedBuilder.addField("", "", false);
         channel.sendMessage(embedBuilder.build()).queue();
 
         return true;

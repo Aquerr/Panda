@@ -5,6 +5,7 @@ import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import io.github.aquerr.pandobot.secret.SecretProperties;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -49,10 +50,32 @@ public class GifCommand implements ICommand
             rd.close();
 
             JSONObject jsonObject = new JSONObject(result.toString());
-            JSONObject object = jsonObject.getJSONObject("data");
-            String test = object.get("bitly_gif_url").toString();
+            if(jsonObject.has("data"))
+            {
+                Object object = jsonObject.get("data");
 
-            channel.sendMessage(test).queue();
+                if(object instanceof JSONObject)
+                {
+                    JSONObject dataJsonObject = (JSONObject)object;
+                    if(dataJsonObject.has("bitly_gif_url"))
+                    {
+                        String test = dataJsonObject.get("bitly_gif_url").toString();
+                        channel.sendMessage(test).queue();
+                    }
+                    else
+                    {
+                        channel.sendMessage("Nie udało mi się znaleźć żadnego gifa. :/").queue();
+                    }
+                }
+                else if(object instanceof JSONArray)
+                {
+                    channel.sendMessage("Nie udało mi się znaleźć żadnego gifa. :/").queue();
+                }
+            }
+            else
+            {
+                channel.sendMessage("Nie udało mi się znaleźć żadnego gifa. :/").queue();
+            }
         }
         catch (MalformedURLException e)
         {

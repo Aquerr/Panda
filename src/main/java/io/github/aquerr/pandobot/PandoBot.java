@@ -105,6 +105,11 @@ public class PandoBot
             onHourTimer = new Timer();
             onHourTimer.schedule(scheduleOneHour(), 3_600_000L);
 
+            this.jda = new JDABuilder(AccountType.BOT)
+                    .setToken(SecretProperties.BOT_TOKEN)
+                    .setGame(Game.of(Game.GameType.DEFAULT, "o Bambus", "https://github.com/Aquerr/PandoBot"))
+                    .buildBlocking();
+
             System.out.println("Setting up commandManager...");
             this.commandManager = new CommandManager();
 
