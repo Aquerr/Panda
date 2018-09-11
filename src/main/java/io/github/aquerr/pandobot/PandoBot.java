@@ -1,5 +1,6 @@
 package io.github.aquerr.pandobot;
 
+import io.github.aquerr.pandobot.annotations.BotCommand;
 import io.github.aquerr.pandobot.commands.CommandManager;
 import io.github.aquerr.pandobot.commands.ICommand;
 import io.github.aquerr.pandobot.events.MessageListener;
@@ -59,6 +60,14 @@ public class PandoBot
 
         List<String> argsList = parseCommandArguments(text, commandAlias);
 
+        //Check arguments count
+        short expectedArgsCount = optionalCommand.get().getClass().getAnnotation(BotCommand.class).argsCount();
+        if (expectedArgsCount != 0 && expectedArgsCount != argsList.size())
+        {
+            channel.sendMessage("Błąd! Zła ilość wymaganych argumentów! Wymagana ilość argumentów: " + expectedArgsCount).queue();
+            return;
+        }
+
         commandManager.executeCommand(commandAlias, author.getUser(), channel, argsList);
     }
 
@@ -95,11 +104,6 @@ public class PandoBot
             //START TIMER HERE.
             onHourTimer = new Timer();
             onHourTimer.schedule(scheduleOneHour(), 3_600_000L);
-
-            this.jda = new JDABuilder(AccountType.BOT)
-                    .setToken(SecretProperties.BOT_TOKEN)
-                    .setGame(Game.of(Game.GameType.DEFAULT, "o Bambus", "https://github.com/Aquerr/PandoBot"))
-                    .buildBlocking();
 
             System.out.println("Setting up commandManager...");
             this.commandManager = new CommandManager();

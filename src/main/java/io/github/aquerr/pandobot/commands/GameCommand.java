@@ -14,11 +14,11 @@ public class GameCommand implements ICommand
     @Override
     public boolean execute(User user, MessageChannel channel, List<String> args)
     {
-        if(args.size() != 1)
-        {
-            channel.sendMessage("Błąd! Zła ilość wymaganych argumentów! Wymagana ilość argumentów: 1").queue();
-            return false;
-        }
+//        if(args.size() != 1)
+//        {
+//            channel.sendMessage("Błąd! Zła ilość wymaganych argumentów! Wymagana ilość argumentów: 1").queue();
+//            return false;
+//        }
 
         channel.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT, args.get(0)));
 

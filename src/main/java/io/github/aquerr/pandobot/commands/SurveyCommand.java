@@ -15,11 +15,11 @@ public class SurveyCommand implements ICommand
     @Override
     public boolean execute(User user, MessageChannel channel, List<String> args)
     {
-        if(args.size() < 4)
-        {
-            channel.sendMessage("Błąd! Zbyt mała ilość wymaganych argumentów! Minimum: 4").queue();
-            return false;
-        }
+//        if(args.size() < 4)
+//        {
+//            channel.sendMessage("Błąd! Zbyt mała ilość wymaganych argumentów! Minimum: 4").queue();
+//            return false;
+//        }
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(new Color(68, 158, 226));

@@ -7,6 +7,9 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
 
+import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.net.URL;
 import java.util.*;
 
 public class CommandManager
@@ -25,6 +28,7 @@ public class CommandManager
         addCommand(Arrays.asList("wyczysc", "clear"), new ClearCommand());
         addCommand(Collections.singletonList("game"), new GameCommand());
         addCommand(Collections.singletonList("gif"), new GifCommand());
+        addCommand(Arrays.asList("help", "pomoc", "komendy"), new HelpCommand());
     }
 
     public void addCommand(List<String> aliases, ICommand command)
@@ -75,5 +79,10 @@ public class CommandManager
         }
 
         return false;
+    }
+
+    public Map<List<String>, ICommand> getCommands()
+    {
+        return this.commands;
     }
 }

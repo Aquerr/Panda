@@ -16,17 +16,17 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.List;
 
-@BotCommand(minRole = VTEAMRoles.EVERYONE, argsCount = 0)
+@BotCommand(minRole = VTEAMRoles.EVERYONE, argsCount = 1)
 public class GifCommand implements ICommand
 {
     @Override
     public boolean execute(User user, MessageChannel channel, List<String> args)
     {
-        if (args.size() != 1)
-        {
-            channel.sendMessage("Błąd! Zła ilość wymaganych argumentów! Wymagana ilość argumentów: 1").queue();
-            return false;
-        }
+//        if (args.size() != 1)
+//        {
+//            channel.sendMessage("Błąd! Zła ilość wymaganych argumentów! Wymagana ilość argumentów: 1").queue();
+//            return false;
+//        }
 
         try
         {
