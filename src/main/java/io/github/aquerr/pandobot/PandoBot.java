@@ -103,7 +103,7 @@ public class PandoBot
         {
             //START TIMER HERE.
             onHourTimer = new Timer();
-            onHourTimer.schedule(scheduleOneHour(), 3_600_000L);
+            onHourTimer.schedule(scheduleOneMinute(), 60_000L);
 
             this.jda = new JDABuilder(AccountType.BOT)
                     .setToken(SecretProperties.BOT_TOKEN)
@@ -123,7 +123,7 @@ public class PandoBot
         }
     }
 
-    private TimerTask scheduleOneHour()
+    private TimerTask scheduleOneMinute()
     {
         return new TimerTask()
         {
@@ -131,7 +131,7 @@ public class PandoBot
             public void run()
             {
                 jda.getPresence().setGame(getBotGame());
-                onHourTimer.schedule(scheduleOneHour(), 3_600_000L);
+                onHourTimer.schedule(scheduleOneMinute(), 60_000L);
             }
         };
     }
