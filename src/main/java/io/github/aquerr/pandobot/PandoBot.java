@@ -64,7 +64,7 @@ public class PandoBot
         short expectedArgsCount = optionalCommand.get().getClass().getAnnotation(BotCommand.class).argsCount();
         if (expectedArgsCount != 0 && expectedArgsCount != argsList.size())
         {
-            channel.sendMessage(":waring: Poprawne użycie komendy: " + optionalCommand.get().getUsage()).queue();
+            channel.sendMessage(":warning: Poprawne użycie komendy: " + optionalCommand.get().getUsage()).queue();
 //            channel.sendMessage(":warning: Zła ilość wymaganych argumentów (" + expectedArgsCount + ")").queue();
             return;
         }

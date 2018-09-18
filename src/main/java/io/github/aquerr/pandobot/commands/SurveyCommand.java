@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import java.awt.*;
 import java.util.List;
 
-@BotCommand(minRole = VTEAMRoles.MODERATOR, argsCount = 4)
+@BotCommand(minRole = VTEAMRoles.EVERYONE, argsCount = 4)
 public class SurveyCommand implements ICommand
 {
     @Override
@@ -34,6 +34,6 @@ public class SurveyCommand implements ICommand
     @Override
     public String getUsage()
     {
-        return "!ankieta \"tytuł\" \"Reakcja 1\" \"Reakcja 2\" \"Reakcja 3\"";
+        return "!ankieta \"Tytuł ankiety\" \"Reakcja 1\" \"Reakcja 2\" \"Reakcja 3\"";
     }
 }
