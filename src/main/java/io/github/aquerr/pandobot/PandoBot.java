@@ -139,9 +139,9 @@ public class PandoBot
     private Game getBotGame()
     {
         LocalTime time = LocalTime.now();
-        if (time.getHour() > 22 || time.getHour() < 8)
+        if (time.getHour() > 22 || time.getHour() < 7)
         {
-            return Game.of(Game.GameType.DEFAULT, "VTEAM");
+            return Game.of(Game.GameType.DEFAULT, "#VTEAMPO22");
         }
         return Game.of(Game.GameType.DEFAULT, "o Bambus");
     }
