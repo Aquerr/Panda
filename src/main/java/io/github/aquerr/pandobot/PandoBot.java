@@ -64,7 +64,7 @@ public class PandoBot
         short expectedArgsCount = optionalCommand.get().getClass().getAnnotation(BotCommand.class).argsCount();
         if (expectedArgsCount != 0 && expectedArgsCount != argsList.size())
         {
-            channel.sendMessage("Błąd! Zła ilość wymaganych argumentów! Wymagana ilość argumentów: " + expectedArgsCount).queue();
+            channel.sendMessage(":warning: Zła ilość wymaganych argumentów (" + expectedArgsCount).queue()")";
             return;
         }
 
