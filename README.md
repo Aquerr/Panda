@@ -1,2 +1,8 @@
-# PandoBot
-PandoBot is a discord bot made for VTEAM Diamonds group.
+# Pandobot
+🐼 Pandobot is a Discord bot made for VTDiamonds.
+
+## Contribute: 
+🐞 Submit ideas and bugs!
+
+### Join to our server:
+💎 https://discord.gg/WVNe8XF

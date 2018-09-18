@@ -30,8 +30,6 @@ public class HelpCommand implements ICommand
             embedBuilder.addField(commandAliases, "", false);
         }
 
-
-
 //        embedBuilder.setDescription("- - - - - - - - - - - - - - - -" + "\n" + ":heart: - " + args.get(1) + "\n\n" +
 //                ":thumbsup: - " + args.get(2) + "\n\n" +
 //                ":thumbsdown: - " + args.get(3));
