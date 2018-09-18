@@ -24,9 +24,9 @@ public class MessageListener extends ListenerAdapter
             //Survey
             if(messageEmbed.getTitle() != null && messageEmbed.getTitle().startsWith(":bookmark_tabs:"))
             {
-                event.getMessage().addReaction("❤").queue();
                 event.getMessage().addReaction("\uD83D\uDC4D").queue();
                 event.getMessage().addReaction("\uD83D\uDC4E").queue();
+                event.getMessage().addReaction("❤").queue();
             }
         }
     }
