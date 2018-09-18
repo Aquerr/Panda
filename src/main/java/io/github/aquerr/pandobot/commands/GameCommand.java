@@ -24,4 +24,10 @@ public class GameCommand implements ICommand
 
         return false;
     }
+
+    @Override
+    public String getUsage()
+    {
+        return "!game \"nazwa_gry\"";
+    }
 }

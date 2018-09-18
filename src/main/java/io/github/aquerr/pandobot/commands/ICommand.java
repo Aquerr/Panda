@@ -8,4 +8,5 @@ import java.util.List;
 public interface ICommand
 {
     boolean execute(User user, MessageChannel channel, List<String> args);
+    String getUsage();
 }

@@ -88,4 +88,10 @@ public class GifCommand implements ICommand
 
         return false;
     }
+
+    @Override
+    public String getUsage()
+    {
+        return "!gif \"tag\"";
+    }
 }

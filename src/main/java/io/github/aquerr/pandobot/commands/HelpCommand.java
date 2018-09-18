@@ -39,4 +39,10 @@ public class HelpCommand implements ICommand
 
         return true;
     }
+
+    @Override
+    public String getUsage()
+    {
+        return "!help";
+    }
 }

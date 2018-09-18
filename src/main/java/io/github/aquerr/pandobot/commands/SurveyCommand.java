@@ -30,4 +30,10 @@ public class SurveyCommand implements ICommand
         channel.sendMessage(embedBuilder.build()).queue();
         return true;
     }
+
+    @Override
+    public String getUsage()
+    {
+        return "!ankieta \"tytuł\" \"Reakcja 1\" \"Reakcja 2\" \"Reakcja 3\"";
+    }
 }

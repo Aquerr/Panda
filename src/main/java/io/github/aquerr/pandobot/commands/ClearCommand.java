@@ -34,5 +34,8 @@ public class ClearCommand implements ICommand
         return true;
     }
 
-
+    public String getUsage()
+    {
+        return "!clear \"ilość\"";
+    }
 }
