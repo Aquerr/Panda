@@ -1,3 +1,5 @@
+<img src="https://i.imgur.com/oPklqrq.png" alt="icon" style="width: 32px;"/>
+
 # Pandobot
 Pandobot is a Discord bot made for VTDiamonds.
 
