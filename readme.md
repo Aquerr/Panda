@@ -17,7 +17,7 @@ Panda is a Discord bot made for VTDiamonds.
 
 🔷 Moderator:
 
-✔️ !clear (ilość) · usuwa wiadomości
+✔️ !usun (ilość) · usuwa wiadomości
 
 🔷 Właściciel:
 
