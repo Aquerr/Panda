@@ -57,7 +57,7 @@ public class PandoBot
 
         if(!this.commandManager.hasPermissions(author, optionalCommand.get()))
             return;
-
+        
         List<String> argsList = parseCommandArguments(text, commandAlias);
 
         //Check arguments count

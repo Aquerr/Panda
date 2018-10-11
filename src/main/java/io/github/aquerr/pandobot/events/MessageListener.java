@@ -2,9 +2,8 @@ package io.github.aquerr.pandobot.events;
 
 import io.github.aquerr.pandobot.PandoBot;
 import net.dv8tion.jda.core.entities.MessageEmbed;
-import net.dv8tion.jda.core.events.message.MessageEmbedEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class MessageListener extends ListenerAdapter
@@ -29,5 +28,11 @@ public class MessageListener extends ListenerAdapter
                 event.getMessage().addReaction("❤").queue();
             }
         }
+    }
+
+    @Override
+    public void onGuildMemberJoin(GuildMemberJoinEvent event)
+    {
+        event.getMember().getJoinDate().get
     }
 }
