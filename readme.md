@@ -1,13 +1,15 @@
 <img src="https://i.imgur.com/oPklqrq.png" alt="icon" style="width: 32px;"/>
 
-# Pandobot
+# Pandobot (dev)
 Panda is a Discord bot made for VTDiamonds.
 
 ## Komendy
 
 🔷 Użytkownik:
 
-✔️ !pomoc · wyświetla spis dostępnych rang
+✔️ !pomoc · wyświetla spis dostępnych komend
+
+✖️ !inne · wyświetla spis komend do innych botów
 
 ✔️ !gif (txt) · wysyła gifa
 
