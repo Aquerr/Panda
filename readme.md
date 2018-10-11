@@ -4,19 +4,24 @@
 Panda is a Discord bot made for VTDiamonds.
 
 ## Komendy
-(Dostępność · Komenda · Wymagana ranga · Opis)
 
-✔️ **!pomoc** · wszyscy · _wyświetla spis dostępnych rang_
+🔷 Użytkownik:
 
-✔️ **!gif** (txt) · wszyscy · _wysyła gifa_
+✔️ !pomoc · wyświetla spis dostępnych rang
 
-✖️ **!ranga** (nazwa) · wszyscy · _ustawia rangę_
+✔️ !gif (txt) · wysyła gifa
 
-✔️ **!ankieta** (nazwa ankiety) (reakcja A) (reakcja B) (reakcja C) · wszyscy · _tworzy ankietę_
+✖️ !ranga (nazwa) · ustawia rangę
 
-✔️ **!game** (txt) · właściciel, admin · _ustawia opis bota_
+✔️ !ankieta (nazwa ankiety) (reakcja A) (reakcja B) (reakcja C) · tworzy ankietę
 
-✔️ **!clear** (ilość) · właściciel, admin, moderator · _usuwa wiadomości_
+🔷 Moderator:
+
+✔️ !clear (ilość) · usuwa wiadomości
+
+🔷 Właściciel:
+
+✔️ !game (txt) · ustawia opis bota
 
 ### Dołącz na serwer
 https://kutt.it/VTDiamonds
