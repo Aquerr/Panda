@@ -21,7 +21,7 @@ Panda is a Discord bot made for VTDiamonds.
 
 🔷 Właściciel:
 
-✔️ !game (txt) · ustawia opis bota
+✔️ !opis (txt) · ustawia opis bota
 
 ### Dołącz na serwer
 https://kutt.it/VTDiamonds
