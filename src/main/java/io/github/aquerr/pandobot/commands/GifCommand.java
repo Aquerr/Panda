@@ -64,17 +64,17 @@ public class GifCommand implements ICommand
                     }
                     else
                     {
-                        channel.sendMessage("Nie udało mi się znaleźć żadnego gifa. :/").queue();
+                        channel.sendMessage(":warning: Nie udało mi się znaleźć żadnego gifa.").queue();
                     }
                 }
                 else if(object instanceof JSONArray)
                 {
-                    channel.sendMessage("Nie udało mi się znaleźć żadnego gifa. :/").queue();
+                    channel.sendMessage(":warning: Nie udało mi się znaleźć żadnego gifa.").queue();
                 }
             }
             else
             {
-                channel.sendMessage("Nie udało mi się znaleźć żadnego gifa. :/").queue();
+                channel.sendMessage(":warning: Nie udało mi się znaleźć żadnego gifa.").queue();
             }
         }
         catch (MalformedURLException e)
