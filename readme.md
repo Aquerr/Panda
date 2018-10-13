@@ -15,7 +15,7 @@ Panda is a Discord bot made for VTDiamonds.
 
 ✖️ !ranga (nazwa) · ustawia rangę
 
-✔️ !ankieta (nazwa ankiety) (reakcja A) (reakcja B) (reakcja C) · tworzy ankietę
+✔️ !ankieta ("nazwa ankiety") ("reakcja A") ("reakcja B") ("reakcja C") · tworzy ankietę
 
 🔷 Moderator:
 
