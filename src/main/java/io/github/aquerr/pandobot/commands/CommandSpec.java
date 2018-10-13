@@ -1,16 +1,28 @@
 package io.github.aquerr.pandobot.commands;
 
-import io.github.aquerr.pandobot.commands.arguments.ICommandArgument;
+import io.github.aquerr.pandobot.commands.arguments.ArgumentType;
+
+import java.util.List;
 
 public class CommandSpec implements ICommandSpec
 {
     private final String name;
     private final String description;
     private final String usage;
-    private final ICommandArgument[] arguments;
+//    private final ICommandArgument[] arguments;
+    private final ArgumentType[] arguments;
     private final ICommand command;
 
-    private CommandSpec(String name, String description, String usage, ICommandArgument[] arguments, ICommand command)
+//    private CommandSpec(String name, String description, String usage, ICommandArgument[] arguments, ICommand command)
+//    {
+//        this.name = name;
+//        this.description = description;
+//        this.usage = usage;
+//        this.arguments = arguments;
+//        this.command = command;
+//    }
+
+    private CommandSpec(String name, String description, String usage, ArgumentType[] arguments, ICommand command)
     {
         this.name = name;
         this.description = description;
@@ -31,7 +43,7 @@ public class CommandSpec implements ICommandSpec
     }
 
     @Override
-    public ICommandArgument[] getArguments()
+    public ArgumentType[] getArguments()
     {
         return this.arguments;
     }
@@ -54,12 +66,18 @@ public class CommandSpec implements ICommandSpec
         return this.name;
     }
 
+    @Override
+    public List<String> parseArguments()
+    {
+        return null;
+    }
+
     public static class Builder
     {
         private String name;
         private String description;
         private String usage;
-        private ICommandArgument[] arguments;
+        private ArgumentType[] arguments;
         private ICommand command;
 
         public Builder setName(String name)
@@ -80,11 +98,17 @@ public class CommandSpec implements ICommandSpec
             return this;
         }
 
-        public Builder setArguments(ICommandArgument... arguments)
+        public Builder setArguments(ArgumentType... arguments)
         {
             this.arguments = arguments;
             return this;
         }
+//
+//        public Builder setArguments(ICommandArgument... arguments)
+//        {
+//            this.arguments = arguments;
+//            return this;
+//        }
 
         public Builder setCommand(ICommand command)
         {

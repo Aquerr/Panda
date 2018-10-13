@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 
 import java.util.List;
 
-@BotCommand(minRole = VTEAMRoles.MODERATOR, argsCount = 1)
+@BotCommand(minRole = VTEAMRoles.EVERYONE, argsCount = 1)
 public class ClearCommand implements ICommand
 {
     @Override
@@ -23,14 +23,16 @@ public class ClearCommand implements ICommand
 
         List<Message> messagesList = channel.getHistory().retrievePast(Integer.parseInt(args.get(0)) + 1).complete();
 
-        for(Message message : messagesList)
-        {
-            channel.deleteMessageById(message.getId()).queue();
-        }
+        messagesList.parallelStream().forEach(x->x.delete().queue());
+//
+//        for(Message message : messagesList)
+//        {
+//            channel.deleteMessageById(message.getId()).queue();
+//        }
 
-        EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setDescription("Usunięto " + Integer.parseInt(args.get(0)) + " wiadomości.");
-        channel.sendMessage(embedBuilder.build()).queue();
+//        EmbedBuilder embedBuilder = new EmbedBuilder();
+//        embedBuilder.setDescription("Usunięto " + Integer.parseInt(args.get(0)) + " wiadomości.");
+//        channel.sendMessage(embedBuilder.build()).queue();
         return true;
     }
 

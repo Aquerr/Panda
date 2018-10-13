@@ -13,7 +13,7 @@ public class MessageListener extends ListenerAdapter
     {
         if (event.getMessage().getContentDisplay().startsWith("!"))
         {
-            PandoBot.getInstance().processCommand(event.getMember(), event.getChannel(), event.getMessage());
+            PandoBot.getInstance().getCommandManager().processCommand(event.getMember(), event.getChannel(), event.getMessage());
         }
 
         if(event.getMessage().getEmbeds().size() > 0 && event.getAuthor().getIdLong() == 481489722003161119L)
@@ -33,6 +33,6 @@ public class MessageListener extends ListenerAdapter
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event)
     {
-        event.getMember().getJoinDate().get
+//        event.getMember().getJoinDate().get
     }
 }

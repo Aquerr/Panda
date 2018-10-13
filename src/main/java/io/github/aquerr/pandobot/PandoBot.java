@@ -1,17 +1,18 @@
 package io.github.aquerr.pandobot;
 
-import io.github.aquerr.pandobot.annotations.BotCommand;
 import io.github.aquerr.pandobot.commands.CommandManager;
-import io.github.aquerr.pandobot.commands.ICommand;
 import io.github.aquerr.pandobot.events.MessageListener;
 import io.github.aquerr.pandobot.secret.SecretProperties;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.*;
+import net.dv8tion.jda.core.entities.Game;
 
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PandoBot
 {
@@ -21,11 +22,6 @@ public class PandoBot
     private JDA jda;
     private Timer onHourTimer;
 
-    private PandoBot()
-    {
-        setup();
-    }
-
     public static PandoBot getInstance()
     {
         if(pandoBot != null)
@@ -33,43 +29,19 @@ public class PandoBot
         return new PandoBot();
     }
 
-    public CommandManager getCommandManager()
-    {
-        return this.commandManager;
-    }
-
     public static void main(String[] args)
     {
         pandoBot = new PandoBot();
     }
 
-    public void processCommand(Member author, MessageChannel channel, Message message)
+    private PandoBot()
     {
-        //Create a new class "parser" for commandManager that will take care of arguments.
-        //Arguments can be different for each command. E.g. not every command needs to take arguments inside " "
+        setup();
+    }
 
-        String text = message.getContentDisplay().substring(1);
-        String commandAlias = text.split(" ")[0];
-
-        Optional<ICommand> optionalCommand = this.commandManager.getCommand(commandAlias);
-        if (!optionalCommand.isPresent())
-            return;
-
-        if(!this.commandManager.hasPermissions(author, optionalCommand.get()))
-            return;
-        
-        List<String> argsList = parseCommandArguments(text, commandAlias);
-
-        //Check arguments count
-        short expectedArgsCount = optionalCommand.get().getClass().getAnnotation(BotCommand.class).argsCount();
-        if (expectedArgsCount != 0 && expectedArgsCount != argsList.size())
-        {
-            channel.sendMessage(":warning: Poprawne użycie komendy: " + optionalCommand.get().getUsage()).queue();
-//            channel.sendMessage(":warning: Zła ilość wymaganych argumentów (" + expectedArgsCount + ")").queue();
-            return;
-        }
-
-        commandManager.executeCommand(commandAlias, author.getUser(), channel, argsList);
+    public CommandManager getCommandManager()
+    {
+        return this.commandManager;
     }
 
     private List<String> parseCommandArguments(String text, String commandAlias)

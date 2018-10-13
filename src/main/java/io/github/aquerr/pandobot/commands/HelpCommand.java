@@ -23,12 +23,23 @@ public class HelpCommand implements ICommand
         embedBuilder.setColor(new Color(68, 158, 226));
         embedBuilder.setTitle("Dostępne komendy u Pandy:  ");
 
-        for (Map.Entry<List<String>, ICommand> commandEntry : commands.entrySet())
-        {
-            String commandAliases = String.join(", ", commandEntry.getKey());
+        embedBuilder.addField("Komendy", ":small_blue_diamond: Użytkownik:\n" +
+                ":small_orange_diamond: !pomoc · wyświetla spis dostępnych rang\n" +
+                ":small_orange_diamond: !gif (txt) · wysyła gifa\n" +
+                ":small_orange_diamond: !ankieta (nazwa ankiety) (reakcja A) (reakcja B) (reakcja C) · tworzy ankietę\n" +
+                "\n" +
+                ":small_blue_diamond: Moderator:\n" +
+                ":small_orange_diamond: !usun (ilość) · usuwa wiadomości\n" +
+                "\n" +
+                ":small_blue_diamond: Właściciel:\n" +
+                ":small_orange_diamond: !opis (txt) · ustawia opis bota", false);
 
-            embedBuilder.addField(commandAliases, "", false);
-        }
+//        for (Map.Entry<List<String>, ICommand> commandEntry : commands.entrySet())
+//        {
+//            String commandAliases = String.join(", ", commandEntry.getKey());
+//
+//            embedBuilder.addField(commandAliases, "", false);
+//        }
 
 //        embedBuilder.setDescription("- - - - - - - - - - - - - - - -" + "\n" + ":heart: - " + args.get(1) + "\n\n" +
 //                ":thumbsup: - " + args.get(2) + "\n\n" +
