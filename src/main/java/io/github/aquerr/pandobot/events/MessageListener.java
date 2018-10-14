@@ -16,7 +16,7 @@ public class MessageListener extends ListenerAdapter
             PandoBot.getInstance().getCommandManager().processCommand(event.getMember(), event.getChannel(), event.getMessage());
         }
 
-        if(event.getMessage().getEmbeds().size() > 0 && event.getAuthor().getIdLong() == 481489722003161119L)
+        if(event.getMessage().getEmbeds().size() > 0 && event.getAuthor().getIdLong() == PandoBot.PANDA_ID)
         {
             MessageEmbed messageEmbed = event.getMessage().getEmbeds().get(0);
 

@@ -16,6 +16,8 @@ import java.util.TimerTask;
 
 public class PandoBot
 {
+    public static final long PANDA_ID = 481489722003161119L;
+
     private static PandoBot pandoBot;
 
     private CommandManager commandManager;
