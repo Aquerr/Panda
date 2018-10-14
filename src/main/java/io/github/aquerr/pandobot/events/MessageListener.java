@@ -1,6 +1,7 @@
 package io.github.aquerr.pandobot.events;
 
 import io.github.aquerr.pandobot.PandoBot;
+import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -33,6 +34,6 @@ public class MessageListener extends ListenerAdapter
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event)
     {
-//        event.getMember().getJoinDate().get
+        event.getGuild().getController().addSingleRoleToMember(event.getMember(), event.getJDA().getRoleById(VTEAMRoles.GRACZ)).queue();
     }
 }
