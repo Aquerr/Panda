@@ -1,5 +1,3 @@
-<img src="https://i.imgur.com/oPklqrq.png" alt="icon" style="width: 32px;"/>
-
 # Pandobot (dev)
 Panda is a Discord bot made for VTDiamonds.
 
