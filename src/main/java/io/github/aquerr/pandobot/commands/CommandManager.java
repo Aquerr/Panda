@@ -102,10 +102,10 @@ public class CommandManager
             return true;
 
         //Access for Everyone
-        if(command.getClass().getAnnotation(BotCommand.class).minRole() == 0)
+        if(command.getClass().getAnnotation(BotCommand.class).minRole() == VTEAMRoles.EVERYONE)
             return true;
 
-        int minRank = VTEAMRoles.getLadder().get(command.getClass().getAnnotation(BotCommand.class).minRole());
+        int minRank = VTEAMRoles.getLadder().get(command.getClass().getAnnotation(BotCommand.class).minRole().getId());
 
         for(Role role : member.getRoles())
         {

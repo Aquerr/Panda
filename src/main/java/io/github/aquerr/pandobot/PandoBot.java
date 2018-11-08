@@ -8,6 +8,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Game;
 
+import java.awt.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.TimerTask;
 public class PandoBot
 {
     public static final long PANDA_ID = 481489722003161119L;
+    public static final Color PANDA_EMBED_COLOR =new Color(68, 158, 226);
 
     private static PandoBot pandoBot;
 
@@ -113,9 +115,8 @@ public class PandoBot
 
     private Game getBotGame()
     {
-      // DO PRZETESTOWANIA! (OD 7 DO 10)
         LocalTime time = LocalTime.now();
-          if (time.getHour() > 10 || time.getHour() < 7)
+          if (time.getHour() > 7 && time.getHour() < 10)
             {
               return Game.of(Game.GameType.DEFAULT, "Bambus Life <3");
             }
