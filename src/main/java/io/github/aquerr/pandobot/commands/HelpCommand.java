@@ -11,7 +11,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
-@BotCommand(minRole = VTEAMRoles.EVERYONE, argsCount = 0)
+@BotCommand(argsCount = 0)
 public class HelpCommand implements ICommand
 {
     @Override

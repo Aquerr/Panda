@@ -51,8 +51,9 @@ public class MessageListener extends ListenerAdapter
                         if (confirmationMessages.containsKey(message.getIdLong()))
                         {
                             confirmationMessages.remove(message.getIdLong());
-                            List<Message> messagesList = event.getChannel().getHistoryBefore(message.getIdLong(), 2).complete().getRetrievedHistory();
+                            List<Message> messagesList = event.getChannel().getHistoryBefore(message.getIdLong(), 1).complete().getRetrievedHistory();
                             messagesList.forEach(x->x.delete().queue());
+                            message.delete().queue();
                         }
                     }
                 }, 10000);

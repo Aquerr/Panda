@@ -17,7 +17,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.List;
 
-@BotCommand(minRole = VTEAMRoles.EVERYONE, argsCount = 1)
+@BotCommand(argsCount = 1)
 public class GifCommand implements ICommand
 {
     @Override

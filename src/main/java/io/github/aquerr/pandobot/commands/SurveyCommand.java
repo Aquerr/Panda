@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.User;
 import java.awt.*;
 import java.util.List;
 
-@BotCommand(minRole = VTEAMRoles.EVERYONE, argsCount = 4)
+@BotCommand(argsCount = 4)
 public class SurveyCommand implements ICommand
 {
     @Override

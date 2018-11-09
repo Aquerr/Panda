@@ -19,13 +19,9 @@ public class ClearCommand implements ICommand
     {
         EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(PandoBot.PANDA_EMBED_COLOR);
-        embedBuilder.addField(":warning: Czy na pewno chcesz usunąć (" + args.get(0) + ") wiadomości?", "", false);
+        embedBuilder.addField(":warning: Czy na pewno chcesz usunąć (" + args.get(0) + ") wiadomości?", "", true);
         MessageEmbed messageEmbed = embedBuilder.build();
         channel.sendMessage(messageEmbed).queue();
-
-//        List<Message> messagesList = channel.getHistory().retrievePast(Integer.parseInt(args.get(0)) + 1).complete();
-//
-//        messagesList.parallelStream().forEach(x->x.delete().queue());
         return true;
     }
 
