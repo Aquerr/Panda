@@ -38,7 +38,7 @@ public class MessageListener extends ListenerAdapter
             }
 
             //Clear confirmation
-            if (messageEmbed.getFields().get(0).getName().startsWith(":warning: Czy na pewno chcesz usunąć"))
+            if (!messageEmbed.getFields().isEmpty() && messageEmbed.getFields().get(0).getName().startsWith(":warning: Czy na pewno chcesz usunąć"))
             {
                 Message message = event.getMessage();
                 message.addReaction("\uD83C\uDDFE").queue();
