@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CommandManager
 {
-    private Map<List<String>, ICommandSpec> commands = new HashMap();
+    private Map<List<String>, ICommandSpec> commands = new HashMap<>();
 
     public CommandManager()
     {
