@@ -24,7 +24,7 @@ public class HelpCommand implements ICommand
         embedBuilder.setTitle("Dostępne komendy u Pandy:  ");
 
         embedBuilder.addField("Komendy", ":small_blue_diamond: Użytkownik:\n" +
-                ":small_orange_diamond: !pomoc · wyświetla spis dostępnych rang\n" +
+                ":small_orange_diamond: !pomoc · wyświetla spis dostępnych komend\n" +
                 ":small_orange_diamond: !gif (txt) · wysyła gifa\n" +
                 ":small_orange_diamond: !ankieta (nazwa ankiety) (reakcja A) (reakcja B) (reakcja C) · tworzy ankietę\n" +
                 "\n" +

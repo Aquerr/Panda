@@ -1,5 +1,6 @@
 package io.github.aquerr.pandobot.commands;
 
+import io.github.aquerr.pandobot.PandoBot;
 import io.github.aquerr.pandobot.annotations.BotCommand;
 import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import net.dv8tion.jda.core.entities.Game;
@@ -14,14 +15,7 @@ public class GameCommand implements ICommand
     @Override
     public boolean execute(User user, MessageChannel channel, List<String> args)
     {
-//        if(args.size() != 1)
-//        {
-//            channel.sendMessage("Błąd! Zła ilość wymaganych argumentów! Wymagana ilość argumentów: 1").queue();
-//            return false;
-//        }
-
-        channel.getJDA().getPresence().setGame(Game.of(Game.GameType.DEFAULT, args.get(0)));
-
+        PandoBot.getInstance().getJda().getPresence().setGame(Game.of(Game.GameType.DEFAULT, args.get(0)));
         return false;
     }
 

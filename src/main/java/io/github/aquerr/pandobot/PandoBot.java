@@ -43,6 +43,10 @@ public class PandoBot
         setup();
     }
 
+    public JDA getJda() {
+        return this.jda;
+    }
+
     public CommandManager getCommandManager()
     {
         return this.commandManager;
