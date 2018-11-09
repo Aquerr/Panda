@@ -16,7 +16,7 @@ public class GameCommand implements ICommand
     public boolean execute(User user, MessageChannel channel, List<String> args)
     {
         PandoBot.getInstance().getJda().getPresence().setGame(Game.of(Game.GameType.DEFAULT, args.get(0)));
-        return false;
+        return true;
     }
 
     @Override

@@ -229,7 +229,18 @@ public class CommandManager
             return;
         }
 
+        //Log
+        logCommandUsage(commandAlias, member, channel, message);
+
+        //Execute
         executeCommand(commandAlias, member.getUser(), channel, argsList);
+    }
+
+    private void logCommandUsage(String commandAlias, Member member, MessageChannel channel, Message message)
+    {
+        System.out.println("User " + member.getEffectiveName() + " used command " + commandAlias);
+        System.out.println("Channel: " + channel.getName());
+        System.out.println("Raw message: " + message);
     }
 
     private Optional<ICommandSpec> getCommandSpec(String commandAlias)
