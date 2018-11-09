@@ -7,7 +7,7 @@ Panda is a Discord bot made for VTDiamonds.
 
 ✔️ !pomoc · wyświetla spis dostępnych komend
 
-✖️ !inne · wyświetla spis komend do innych botów
+✖️ !autorzy · wyświetla autorów i link do Github'a
 
 ✔️ !gif (txt) · wysyła gifa
 
