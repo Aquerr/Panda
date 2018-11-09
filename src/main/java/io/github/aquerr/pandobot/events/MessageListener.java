@@ -7,6 +7,7 @@ import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.MessageReaction;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -14,10 +15,10 @@ import java.util.*;
 
 public class MessageListener extends ListenerAdapter
 {
-    Map<Long, Timer> confirmationMessages = new HashMap<>();
+    private Map<Long, Timer> confirmationMessages = new HashMap<>();
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event)
+    public void onGuildMessageReceived(GuildMessageReceivedEvent event)
     {
         if (event.getMessage().getContentDisplay().startsWith("!"))
         {
@@ -47,9 +48,12 @@ public class MessageListener extends ListenerAdapter
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        confirmationMessages.remove(message.getIdLong());
-                        List<Message> messagesList = event.getChannel().getHistoryBefore(message.getIdLong(), 2).complete().getRetrievedHistory();
-                        messagesList.forEach(x->x.delete().queue());
+                        if (confirmationMessages.containsKey(message.getIdLong()))
+                        {
+                            confirmationMessages.remove(message.getIdLong());
+                            List<Message> messagesList = event.getChannel().getHistoryBefore(message.getIdLong(), 2).complete().getRetrievedHistory();
+                            messagesList.forEach(x->x.delete().queue());
+                        }
                     }
                 }, 10000);
                 confirmationMessages.put(message.getIdLong(), timer);
@@ -76,19 +80,16 @@ public class MessageListener extends ListenerAdapter
                 int number = Integer.valueOf(stringNumber);
                 List<Message> messagesList = event.getChannel().getHistoryBefore(message, number + 1).complete().getRetrievedHistory();
                 message.delete().queue();
-                messagesList.parallelStream().forEach(x->x.delete().queue());
+                event.getChannel().deleteMessages(messagesList).complete();
                 confirmationMessages.remove(event.getMessageIdLong());
             }
-            else
+            else //No
             {
                 confirmationMessages.remove(event.getMessageIdLong());
                 List<Message> messagesList = event.getChannel().getHistoryBefore(message,  1).complete().getRetrievedHistory();
                 message.delete().queue();
-                messagesList.forEach(x->x.delete().queue());
-//                event.getChannel().getMessageById(event.getMessageId()).complete().delete().queue();
+                event.getChannel().deleteMessages(messagesList).complete();
             }
-
-            //No
         }
     }
 
