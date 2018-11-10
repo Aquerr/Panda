@@ -1,5 +1,6 @@
 package io.github.aquerr.pandobot.commands;
 
+import io.github.aquerr.pandobot.PandoBot;
 import io.github.aquerr.pandobot.annotations.BotCommand;
 import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import io.github.aquerr.pandobot.secret.SecretProperties;
@@ -93,6 +94,7 @@ public class GifCommand implements ICommand
 
     private void printError(MessageChannel channel){
         EmbedBuilder embedBuilder = new EmbedBuilder();
+        embedBuilder.setColor(PandoBot.PANDA_EMBED_COLOR_ERROR);
         embedBuilder.setDescription(":warning: Nie udało mi się znaleźć żadnego gifa");
         channel.sendMessage(embedBuilder.build());
     }

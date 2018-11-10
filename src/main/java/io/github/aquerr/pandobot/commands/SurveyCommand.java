@@ -1,5 +1,6 @@
 package io.github.aquerr.pandobot.commands;
 
+import io.github.aquerr.pandobot.PandoBot;
 import io.github.aquerr.pandobot.annotations.BotCommand;
 import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import net.dv8tion.jda.core.EmbedBuilder;
@@ -16,7 +17,7 @@ public class SurveyCommand implements ICommand
     public boolean execute(User user, MessageChannel channel, List<String> args)
     {
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setColor(new Color(68, 158, 226));
+        embedBuilder.setColor(PandoBot.PANDA_EMBED_COLOR_DEFAULT);
         embedBuilder.setTitle(":bookmark_tabs: " + args.get(0));
         embedBuilder.setDescription("- - - - - - - - - - - - - - - -" + "\n" + ":heart: - " + args.get(1) + "\n\n" +
                                     ":thumbsup: - " + args.get(2) + "\n\n" +

@@ -20,7 +20,7 @@ public class HelpCommand implements ICommand
         Map<List<String>, ICommand> commands = PandoBot.getInstance().getCommandManager().getCommands();
 
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setColor(new Color(68, 158, 226));
+        embedBuilder.setColor(PandoBot.PANDA_EMBED_COLOR_DEFAULT);
         embedBuilder.setTitle("Dostępne komendy u Pandy:  ");
 
         embedBuilder.addField("Komendy", ":small_blue_diamond: Użytkownik:\n" +

@@ -1,5 +1,6 @@
 package io.github.aquerr.pandobot.commands;
 
+import io.github.aquerr.pandobot.PandoBot;
 import io.github.aquerr.pandobot.annotations.BotCommand;
 import io.github.aquerr.pandobot.commands.arguments.ArgumentType;
 import io.github.aquerr.pandobot.commands.parsers.NumberArgumentParser;
@@ -205,7 +206,7 @@ public class CommandManager
         if(argsList == null)
         {
             EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setColor(new Color(68, 158, 226));
+            embedBuilder.setColor(PandoBot.PANDA_EMBED_COLOR_ERROR);
             embedBuilder.addField(":warning: Poprawne użycie komendy:", optionalCommandSpec.get().getUsage(),false);
 //            embedBuilder.setDescription(":warning: Poprawne użycie komendy: " + optionalCommandSpec.get().getUsage());
             channel.sendMessage(embedBuilder.build()).queue();
@@ -221,7 +222,7 @@ public class CommandManager
         if (expectedArgsCount != 0 && expectedArgsCount != argsList.size())
         {
             EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setColor(new Color(68, 158, 226));
+            embedBuilder.setColor(PandoBot.PANDA_EMBED_COLOR_ERROR);
             embedBuilder.addField(":warning: Poprawne użycie komendy:", optionalCommandSpec.get().getUsage(),false);
 //            embedBuilder.setDescription(":warning: Poprawne użycie komendy: " + optionalCommandSpec.get().getUsage());
             channel.sendMessage(embedBuilder.build()).queue();

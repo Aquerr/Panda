@@ -18,7 +18,11 @@ import java.util.TimerTask;
 public class PandoBot
 {
     public static final long PANDA_ID = 481489722003161119L;
-    public static final Color PANDA_EMBED_COLOR =new Color(68, 158, 226);
+    public static final Color PANDA_EMBED_COLOR_DEFAULT = Color.decode("#83C0A9");
+    public static final Color PANDA_EMBED_COLOR_WARNING = Color.decode("#FFCC4D");
+    public static final Color PANDA_EMBED_COLOR_ERROR = Color.decode("#BE1931");
+
+
 
     private static PandoBot pandoBot;
 

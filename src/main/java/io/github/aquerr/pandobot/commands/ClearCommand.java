@@ -18,7 +18,7 @@ public class ClearCommand implements ICommand
     public boolean execute(User user, MessageChannel channel, List<String> args)
     {
         EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setColor(PandoBot.PANDA_EMBED_COLOR);
+        embedBuilder.setColor(PandoBot.PANDA_EMBED_COLOR_WARNING);
         embedBuilder.addField(":warning: Czy na pewno chcesz usunąć (" + args.get(0) + ") wiadomości?", "", true);
         MessageEmbed messageEmbed = embedBuilder.build();
         channel.sendMessage(messageEmbed).queue();
