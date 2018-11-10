@@ -206,8 +206,8 @@ public class CommandManager
         {
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setColor(new Color(68, 158, 226));
-//            embedBuilder.addField("",":warning: Poprawne użycie komendy: " + optionalCommandSpec.get().getUsage(),true);
-            embedBuilder.setDescription(":warning: Poprawne użycie komendy: " + optionalCommandSpec.get().getUsage());
+            embedBuilder.addField(":warning: Poprawne użycie komendy:", optionalCommandSpec.get().getUsage(),false);
+//            embedBuilder.setDescription(":warning: Poprawne użycie komendy: " + optionalCommandSpec.get().getUsage());
             channel.sendMessage(embedBuilder.build()).queue();
 
 //            channel.sendMessage(":warning: Poprawne użycie komendy: " + optionalCommandSpec.get().getUsage()).queue();
@@ -222,7 +222,8 @@ public class CommandManager
         {
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setColor(new Color(68, 158, 226));
-            embedBuilder.setDescription(":warning: Poprawne użycie komendy: " + optionalCommandSpec.get().getUsage());
+            embedBuilder.addField(":warning: Poprawne użycie komendy:", optionalCommandSpec.get().getUsage(),false);
+//            embedBuilder.setDescription(":warning: Poprawne użycie komendy: " + optionalCommandSpec.get().getUsage());
             channel.sendMessage(embedBuilder.build()).queue();
 //            channel.sendMessage(":warning: Poprawne użycie komendy: " + optionalCommandSpec.get().getUsage()).queue();
 //            channel.sendMessage(":warning: Zła ilość wymaganych argumentów (" + expectedArgsCount + ")").queue();

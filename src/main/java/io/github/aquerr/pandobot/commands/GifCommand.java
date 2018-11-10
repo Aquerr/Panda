@@ -3,6 +3,8 @@ package io.github.aquerr.pandobot.commands;
 import io.github.aquerr.pandobot.annotations.BotCommand;
 import io.github.aquerr.pandobot.entities.VTEAMRoles;
 import io.github.aquerr.pandobot.secret.SecretProperties;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import org.json.JSONArray;
@@ -20,25 +22,19 @@ import java.util.List;
 @BotCommand(argsCount = 1)
 public class GifCommand implements ICommand
 {
+    private static final String GIPHY_RANDOM = "https://api.giphy.com/v1/gifs/random";
+    private static final String CHARSET_UTF_8 = "UTF-8";
+
     @Override
     public boolean execute(User user, MessageChannel channel, List<String> args)
     {
-//        if (args.size() != 1)
-//        {
-//            channel.sendMessage("Błąd! Zła ilość wymaganych argumentów! Wymagana ilość argumentów: 1").queue();
-//            return false;
-//        }
-
         try
         {
-            String stringUrl = "https://api.giphy.com/v1/gifs/random";
-            String charset = "UTF-8";
+            String query = String.format("api_key=%s&tag=%s", URLEncoder.encode(SecretProperties.GIPHY_API_KEY, CHARSET_UTF_8),
+                    URLEncoder.encode(args.get(0), CHARSET_UTF_8));
 
-            String query = String.format("api_key=%s&tag=%s", URLEncoder.encode(SecretProperties.GIPHY_API_KEY, charset),
-                    URLEncoder.encode(args.get(0), charset));
-
-            URLConnection connection = new URL(stringUrl + "?" + query).openConnection();
-            connection.setRequestProperty("Accept-Charset", charset);
+            URLConnection connection = new URL(GIPHY_RANDOM + "?" + query).openConnection();
+            connection.setRequestProperty("Accept-Charset", CHARSET_UTF_8);
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
@@ -64,17 +60,17 @@ public class GifCommand implements ICommand
                     }
                     else
                     {
-                        channel.sendMessage(":warning: Nie udało mi się znaleźć żadnego gifa.").queue();
+                        printError(channel);
                     }
                 }
                 else if(object instanceof JSONArray)
                 {
-                    channel.sendMessage(":warning: Nie udało mi się znaleźć żadnego gifa.").queue();
+                    printError(channel);
                 }
             }
             else
             {
-                channel.sendMessage(":warning: Nie udało mi się znaleźć żadnego gifa.").queue();
+                printError(channel);
             }
         }
         catch (MalformedURLException e)
@@ -93,5 +89,11 @@ public class GifCommand implements ICommand
     public String getUsage()
     {
         return "!gif \"tag\"";
+    }
+
+    private void printError(MessageChannel channel){
+        EmbedBuilder embedBuilder = new EmbedBuilder();
+        embedBuilder.setDescription(":warning: Nie udało mi się znaleźć żadnego gifa");
+        channel.sendMessage(embedBuilder.build());
     }
 }

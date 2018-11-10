@@ -9,5 +9,5 @@ import java.lang.annotation.RetentionPolicy;
 public @interface BotCommand
 {
     VTEAMRoles minRole() default VTEAMRoles.EVERYONE;
-    short argsCount();
+    short argsCount() default 0;
 }
