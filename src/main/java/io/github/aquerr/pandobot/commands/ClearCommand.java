@@ -11,7 +11,7 @@ import net.dv8tion.jda.core.entities.User;
 
 import java.util.List;
 
-@BotCommand(minRole = VTEAMRoles.EVERYONE, argsCount = 1)
+@BotCommand(minRole = VTEAMRoles.MODERATOR, argsCount = 1)
 public class ClearCommand implements ICommand
 {
     @Override
