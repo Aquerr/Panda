@@ -1,4 +1,4 @@
-# Pandobot (dev)
+# Pandobot (beta)
 Panda is a Discord bot made for VTDiamonds.
 
 ## Komendy
